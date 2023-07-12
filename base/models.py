@@ -9,8 +9,8 @@ class Account(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=False, db_column="Created_At")
     updated_at = models.DateTimeField(auto_now=True, null=False, db_column="Updated_At")
 
-    # def __str__(self):
-    #     return self.account_name
+    def __str__(self):
+        return self.account_name
 
 
 class User(models.Model):
@@ -33,7 +33,9 @@ class UsersAccounts(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=False, db_column="Updated_At")
 
     def __str__(self):
-        return
+        user = User.objects.get(id=self.user_id)
+        account = Account.objects.get(id=self.account_id)
+        return "User ID: " + user + ", Account ID: " + account
 
 
 class AccountData(models.Model):
@@ -44,4 +46,9 @@ class AccountData(models.Model):
     updated_by_user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, db_column="Updated_By", related_name="updated_by")
     created_at = models.DateTimeField(auto_now_add=True, null=False, db_column="Created_At")
     updated_at = models.DateTimeField(auto_now=True, null=False, db_column="Updated_At")
+
+    def __str__(self):
+        user = User.objects.get(id=self.user_id)
+        account = Account.objects.get(id=self.account_id)
+        return "User ID: " + user + ", Account ID: " + account
 
