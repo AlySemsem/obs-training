@@ -16,11 +16,11 @@ class Account(models.Model):
 class User(models.Model):
     ftid = models.CharField(max_length=8, null=False, db_column="Ftid")
     username = models.CharField(max_length=100, null=False, db_column="Username")
-    age = models.IntegerField(null=False, db_column="Age")
+    age = models.IntegerField(null=True, db_column="Age")
     email = models.EmailField(null=False, db_column="Email")
-    disclaimer = models.BooleanField(null=False, db_column="Disclaimer")
-    created_at = models.DateTimeField(auto_now_add=True, null=False, db_column="Created_At")
-    updated_at = models.DateTimeField(auto_now=True, null=False, db_column="Updated_At")
+    disclaimer = models.BooleanField(null=True, db_column="Disclaimer")
+    created_at = models.DateTimeField(auto_now_add=True, db_column="Created_At")
+    updated_at = models.DateTimeField(auto_now=True, db_column="Updated_At")
 
     def __str__(self):
         return self.username
